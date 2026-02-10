@@ -95,7 +95,10 @@ Add `color`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.
 #| label: add-label-5
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, 
-                           y = hwy))
+                           y = hwy,
+                           fill = "black",
+                           color = class),
+                           binwith = 2,)
 ```
 
 ## Help Me
@@ -109,9 +112,13 @@ What do `facet_grid()` and `facet_wrap()` do?
 q <- ggplot(mpg) + geom_point(aes(x = displ, y = hwy))
 
 q + facet_grid(. ~ cyl)
+#Makes one row, four columns by cyl
 q + facet_grid(drv ~ .)
+#Makes three rows, one column by drv
 q + facet_grid(drv ~ cyl)
+#Makes three rows by drv, four columns by cyl
 q + facet_wrap(~ class)
+#Makes a graph for each value in class
 ```
 
 
@@ -121,6 +128,8 @@ Make a bar chart `class` colored by `class`. Use the help page for `geom_bar` to
 
 ```{r}
 #| label: add-label-6
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = class, color = class))
 ```
 
 ## Quiz
